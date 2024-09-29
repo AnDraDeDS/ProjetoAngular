@@ -1,38 +1,29 @@
 <ion-header>
   <ion-toolbar>
-  <ion-title>Cálculo de Média</ion-title>
+    <ion-title>
+      Lista de gêneros musicais
+    </ion-title>
   </ion-toolbar>
-  </ion-header>
-  <ion-content> <ion-row class="linha">
-  <ion-col size-sm="12" size-md="6">
-  <ion-card>
-  <ion-card-content>
+</ion-header>
+
+<ion-content class="ion-padding">
+
   <ion-list>
-  <ion-item>
-  <ion-label position="floating">Nota A</ion-label>
-  <ion-input type="number" [(ngModel)]="notaA"></ion-input>
-  </ion-item>
-  <ion-item>
-  <ion-label position="floating">Nota B</ion-label>
-  <ion-input type="number" [(ngModel)]="notaB"></ion-input>
-  </ion-item>
-  <ion-button expand="block" (click)="calcularMedia()">Calcular Média</ion-button>
-  <ion-item>
-  <ion-label position="floating">Média</ion-label>
-  <ion-input type="number" [value]="media" readonly></ion-input>
-  </ion-item>
-  <ion-item>
-  <ion-label position="floating">Situação</ion-label>
-  <ion-input [value]="situacao" readonly></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label-Placement="floating" label="Nome" [(ngModel)]="nome"></ion-input>
+      <!--[(ngModel)] sincroniza com a variável do arquivo ts-->
+    </ion-item>
   </ion-list>
-  </ion-card-content>
-  </ion-card>
-  </ion-col>
-  </ion-row>
-  </ion-content>
-  <ion-footer>
-  <ion-toolbar>
-  <ion-title class="ion-text-center">Taxa de Elite</ion-title>
-  </ion-toolbar>
-  </ion-footer>
+  <ion-button (click)="adicionar()">Adicionar</ion-button>
+
+  <ion-list> <!--uma lista possui varios itens-->
+    <ion-item *ngFor="let item of items; let posicao = index;"> <!--*ngFor -> for do Angular-->
+      <ion-label>
+        {{ item.titulo }} <!--exibir variável-->
+      </ion-label>
+      <ion-button color="danger" slot="end" (click)="remover(posicao)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
